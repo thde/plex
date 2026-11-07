@@ -1,0 +1,121 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/OAI/Overlay-Specification/refs/heads/main/schemas/v1.0/schema.yaml
+# Fixes for Go identifier collisions in the upstream Plex specification.
+overlay: 1.0.0
+info:
+  title: Plex Media Server Go identifier fixes
+  version: 1.0.0
+actions:
+  # `mediaContainer` (an object wrapping a `MediaContainer` property) and
+  # `MediaContainer` (the container itself) both map to the Go name MediaContainer.
+  - target: $.components.schemas.mediaContainer
+    update:
+      x-go-name: MediaContainerRoot
+  # `metadata` has both `Rating` (a list of rating tags) and `rating` (a
+  # numeric rating), which both map to the Go field name Rating.
+  - target: $.components.schemas.metadata.properties.Rating
+    update:
+      x-go-name: Ratings
+  # Shared parameters are keyed "2".."35" upstream, which would generate the
+  # Go types N2..N35. Name them after the parameter instead.
+  - target: $.components.parameters["2"]
+    update:
+      x-go-name: AdvancedSubtitlesParam
+  - target: $.components.parameters["3"]
+    update:
+      x-go-name: AudioBoostParam
+  - target: $.components.parameters["4"]
+    update:
+      x-go-name: AudioChannelCountParam
+  - target: $.components.parameters["5"]
+    update:
+      x-go-name: NormalizeLoudnessParam
+  - target: $.components.parameters["6"]
+    update:
+      x-go-name: BoostDialogParam
+  - target: $.components.parameters["7"]
+    update:
+      x-go-name: AutoAdjustQualityParam
+  - target: $.components.parameters["8"]
+    update:
+      x-go-name: AutoAdjustSubtitleParam
+  - target: $.components.parameters["9"]
+    update:
+      x-go-name: DirectPlayParam
+  - target: $.components.parameters["10"]
+    update:
+      x-go-name: DirectStreamParam
+  - target: $.components.parameters["11"]
+    update:
+      x-go-name: DirectStreamAudioParam
+  - target: $.components.parameters["12"]
+    update:
+      x-go-name: DisableResolutionRotationParam
+  - target: $.components.parameters["13"]
+    update:
+      x-go-name: HasMDEParam
+  - target: $.components.parameters["14"]
+    update:
+      x-go-name: LocationParam
+  - target: $.components.parameters["15"]
+    update:
+      x-go-name: MediaBufferSizeParam
+  - target: $.components.parameters["16"]
+    update:
+      x-go-name: MediaIndexParam
+  - target: $.components.parameters["17"]
+    update:
+      x-go-name: MusicBitrateParam
+  - target: $.components.parameters["18"]
+    update:
+      x-go-name: OffsetParam
+  - target: $.components.parameters["19"]
+    update:
+      x-go-name: PartIndexParam
+  - target: $.components.parameters["20"]
+    update:
+      x-go-name: PathParam
+  - target: $.components.parameters["21"]
+    update:
+      x-go-name: PeakBitrateParam
+  - target: $.components.parameters["22"]
+    update:
+      x-go-name: PhotoResolutionParam
+  - target: $.components.parameters["23"]
+    update:
+      x-go-name: ProtocolParam
+  - target: $.components.parameters["24"]
+    update:
+      x-go-name: SecondsPerSegmentParam
+  - target: $.components.parameters["25"]
+    update:
+      x-go-name: SubtitleSizeParam
+  - target: $.components.parameters["26"]
+    update:
+      x-go-name: SubtitlesParam
+  - target: $.components.parameters["27"]
+    update:
+      x-go-name: VideoBitrateParam
+  - target: $.components.parameters["28"]
+    update:
+      x-go-name: VideoQualityParam
+  - target: $.components.parameters["29"]
+    update:
+      x-go-name: VideoResolutionParam
+  - target: $.components.parameters["30"]
+    update:
+      x-go-name: XPlexClientIdentifierParam
+  - target: $.components.parameters["31"]
+    update:
+      x-go-name: XPlexClientProfileExtraParam
+  - target: $.components.parameters["32"]
+    update:
+      x-go-name: XPlexClientProfileNameParam
+  - target: $.components.parameters["33"]
+    update:
+      x-go-name: XPlexDeviceParam
+  - target: $.components.parameters["34"]
+    update:
+      x-go-name: XPlexModelParam
+  - target: $.components.parameters["35"]
+    update:
+      x-go-name: XPlexPlatformParam
