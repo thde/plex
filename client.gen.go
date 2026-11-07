@@ -4745,6 +4745,11 @@ type Filter struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// GUID An identifier of a metadata item at an external agent, e.g. "imdb://tt0111161", "tmdb://278" or "tvdb://12345".
+type GUID struct {
+	ID string `json:"id,omitempty,omitzero"`
+}
+
 // Hub defines model for hub.
 type Hub struct {
 	Metadata []Metadata `json:"Metadata,omitempty,omitzero"`
@@ -4808,7 +4813,7 @@ type Items struct {
 	// Filter Typically only seen in metadata at a library's top level
 	Filter       []Filter `json:"Filter,omitempty,omitzero"`
 	Genre        []Tag    `json:"Genre,omitempty,omitzero"`
-	GUID         []Tag    `json:"Guid,omitempty,omitzero"`
+	GUID         []GUID   `json:"Guid,omitempty,omitzero"`
 	Image        []Image  `json:"Image,omitempty,omitzero"`
 	Media        []Media  `json:"Media,omitempty,omitzero"`
 	MetadataItem []Items  `json:"MetadataItem,omitempty,omitzero"`
@@ -5222,7 +5227,7 @@ type MediaContainerWithDecision_MediaContainer_Metadata_Item struct {
 	// Filter Typically only seen in metadata at a library's top level
 	Filter  []Filter                                                        `json:"Filter,omitempty,omitzero"`
 	Genre   []Tag                                                           `json:"Genre,omitempty,omitzero"`
-	GUID    []Tag                                                           `json:"Guid,omitempty,omitzero"`
+	GUID    []GUID                                                          `json:"Guid,omitempty,omitzero"`
 	Image   []Image                                                         `json:"Image,omitempty,omitzero"`
 	Media   []MediaContainerWithDecision_MediaContainer_Metadata_Media_Item `json:"Media,omitempty,omitzero"`
 	Ratings []Tag                                                           `json:"Rating,omitempty,omitzero"`
@@ -5551,7 +5556,7 @@ type MediaContainerWithNestedMetadata_MediaContainer_MetadataItem_Item struct {
 	// Filter Typically only seen in metadata at a library's top level
 	Filter       []Filter `json:"Filter,omitempty,omitzero"`
 	Genre        []Tag    `json:"Genre,omitempty,omitzero"`
-	GUID         []Tag    `json:"Guid,omitempty,omitzero"`
+	GUID         []GUID   `json:"Guid,omitempty,omitzero"`
 	Image        []Image  `json:"Image,omitempty,omitzero"`
 	Media        []Media  `json:"Media,omitempty,omitzero"`
 	MetadataItem []Items  `json:"MetadataItem,omitempty,omitzero"`
@@ -5746,7 +5751,7 @@ type MediaContainerWithPlaylistMetadata_MediaContainer_Metadata_Item struct {
 	// Filter Typically only seen in metadata at a library's top level
 	Filter  []Filter `json:"Filter,omitempty,omitzero"`
 	Genre   []Tag    `json:"Genre,omitempty,omitzero"`
-	GUID    []Tag    `json:"Guid,omitempty,omitzero"`
+	GUID    []GUID   `json:"Guid,omitempty,omitzero"`
 	Image   []Image  `json:"Image,omitempty,omitzero"`
 	Media   []Media  `json:"Media,omitempty,omitzero"`
 	Ratings []Tag    `json:"Rating,omitempty,omitzero"`
@@ -6191,7 +6196,7 @@ type Metadata struct {
 	// Filter Typically only seen in metadata at a library's top level
 	Filter  []Filter `json:"Filter,omitempty,omitzero"`
 	Genre   []Tag    `json:"Genre,omitempty,omitzero"`
-	GUID    []Tag    `json:"Guid,omitempty,omitzero"`
+	GUID    []GUID   `json:"Guid,omitempty,omitzero"`
 	Image   []Image  `json:"Image,omitempty,omitzero"`
 	Media   []Media  `json:"Media,omitempty,omitzero"`
 	Ratings []Tag    `json:"Rating,omitempty,omitzero"`
@@ -9057,7 +9062,7 @@ type PlaylistGetItemsGeneratorItems200JSONResponseBody_MediaContainer_Metadata s
 	// Filter Typically only seen in metadata at a library's top level
 	Filter  []Filter `json:"Filter,omitempty,omitzero"`
 	Genre   []Tag    `json:"Genre,omitempty,omitzero"`
-	GUID    []Tag    `json:"Guid,omitempty,omitzero"`
+	GUID    []GUID   `json:"Guid,omitempty,omitzero"`
 	Image   []Image  `json:"Image,omitempty,omitzero"`
 	Media   []Media  `json:"Media,omitempty,omitzero"`
 	Ratings []Tag    `json:"Rating,omitempty,omitzero"`
@@ -9321,7 +9326,7 @@ type StatusGetSlash200JSONResponseBody_MediaContainer_Metadata_Item struct {
 	// Filter Typically only seen in metadata at a library's top level
 	Filter []Filter `json:"Filter,omitempty,omitzero"`
 	Genre  []Tag    `json:"Genre,omitempty,omitzero"`
-	GUID   []Tag    `json:"Guid,omitempty,omitzero"`
+	GUID   []GUID   `json:"Guid,omitempty,omitzero"`
 	Image  []Image  `json:"Image,omitempty,omitzero"`
 	Media  []Media  `json:"Media,omitempty,omitzero"`
 

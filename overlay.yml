@@ -14,6 +14,20 @@ actions:
   - target: $.components.schemas.media.properties.optimizedForStreaming
     update:
       x-go-type: Bool
+  # `metadata.Guid` reuses `tag`, whose id is an integer, but Plex Media
+  # Server sends external agent identifiers such as "tvdb://376944".
+  - target: $.components.schemas
+    update:
+      guid:
+        description: An identifier of a metadata item at an external agent, e.g. "imdb://tt0111161", "tmdb://278" or "tvdb://12345".
+        type: object
+        properties:
+          id:
+            type: string
+            example: tvdb://12345
+  - target: $.components.schemas.metadata.properties.Guid.items
+    update:
+      $ref: "#/components/schemas/guid"
   # `mediaContainer` (an object wrapping a `MediaContainer` property) and
   # `MediaContainer` (the container itself) both map to the Go name MediaContainer.
   - target: $.components.schemas.mediaContainer
