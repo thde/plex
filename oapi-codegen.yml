@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/oapi-codegen/oapi-codegen/HEAD/configuration-schema.json
+package: plex
+output: client.gen.go
+generate:
+  models: true
+  client: true
+  # The only server in the spec is a templated plex.direct URL whose variable
+  # names are not valid Go identifiers; each server has its own base URL anyway.
+  server-urls: false
+  embedded-spec: false
+output-options:
+  name-normalizer: ToCamelCaseWithInitialisms
+  additional-initialisms:
+    - DVR
+    - DVRs
+    - EPG
+    - PMS
+  prefer-skip-optional-pointer: true
+  prefer-skip-optional-pointer-with-omitzero: true
+  overlay:
+    path: overlay.yml
+    strict: true
