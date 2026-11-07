@@ -1,10 +1,19 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/OAI/Overlay-Specification/refs/heads/main/schemas/v1.0/schema.yaml
-# Fixes for Go identifier collisions in the upstream Plex specification.
+# Fixes for Go identifier collisions and wrong types in the upstream Plex
+# specification.
 overlay: 1.0.0
 info:
-  title: Plex Media Server Go identifier fixes
+  title: Plex Media Server Go fixes
   version: 1.0.0
 actions:
+  # Fields documented as boolean that Plex Media Server sends as 0 or 1.
+  # Bool (bool.go) decodes both, so callers keep working with a boolean.
+  - target: $.components.schemas.librarySection.properties.hidden
+    update:
+      x-go-type: Bool
+  - target: $.components.schemas.media.properties.optimizedForStreaming
+    update:
+      x-go-type: Bool
   # `mediaContainer` (an object wrapping a `MediaContainer` property) and
   # `MediaContainer` (the container itself) both map to the Go name MediaContainer.
   - target: $.components.schemas.mediaContainer

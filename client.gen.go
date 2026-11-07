@@ -5008,7 +5008,7 @@ type LibrarySection struct {
 
 	// Filters Indicates whether this section has filtering capabilities
 	Filters  bool   `json:"filters,omitempty,omitzero"`
-	Hidden   bool   `json:"hidden,omitempty,omitzero"`
+	Hidden   Bool   `json:"hidden,omitempty,omitzero"`
 	Key      Key    `json:"key,omitempty,omitzero"`
 	Language string `json:"language,omitempty,omitzero"`
 
@@ -5036,7 +5036,7 @@ type Media struct {
 	HasVoiceActivity      bool                   `json:"hasVoiceActivity,omitempty,omitzero"`
 	Height                int                    `json:"height,omitempty,omitzero"`
 	ID                    int                    `json:"id,omitempty,omitzero"`
-	OptimizedForStreaming bool                   `json:"optimizedForStreaming,omitempty,omitzero"`
+	OptimizedForStreaming Bool                   `json:"optimizedForStreaming,omitempty,omitzero"`
 	VideoCodec            interface{}            `json:"videoCodec,omitempty,omitzero"`
 	VideoFrameRate        interface{}            `json:"videoFrameRate,omitempty,omitzero"`
 	VideoProfile          interface{}            `json:"videoProfile,omitempty,omitzero"`
@@ -5202,7 +5202,7 @@ type MediaContainerWithDecision_MediaContainer_Metadata_Media_Item struct {
 	HasVoiceActivity      bool                                                                 `json:"hasVoiceActivity,omitempty,omitzero"`
 	Height                int                                                                  `json:"height,omitempty,omitzero"`
 	ID                    int                                                                  `json:"id,omitempty,omitzero"`
-	OptimizedForStreaming bool                                                                 `json:"optimizedForStreaming,omitempty,omitzero"`
+	OptimizedForStreaming Bool                                                                 `json:"optimizedForStreaming,omitempty,omitzero"`
 	ResourceSession       string                                                               `json:"resourceSession,omitempty,omitzero"`
 	Selected              bool                                                                 `json:"selected,omitempty,omitzero"`
 	VideoCodec            interface{}                                                          `json:"videoCodec,omitempty,omitzero"`
