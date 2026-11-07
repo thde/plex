@@ -11,12 +11,14 @@ import (
 
 // TestMetadataGUID lists a show section with includeGuids=1, which returns
 // the external identifiers of each show as strings. The specification types
-// them as tags with integer IDs.
+// them as tags with integer IDs. The lowercase guid is the item's own Plex GUID
+// and must not collide with them.
 func TestMetadataGUID(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		_, _ = w.Write([]byte(`{"MediaContainer":{"size":1,"Metadata":[{
-			"ratingKey":"1234","type":"show","title":"Example",
+			"ratingKey":"1234","type":"show","title":"Example","childCount":3,
+			"guid":"plex://show/5d9c086c46115600200aa2fe",
 			"Guid":[{"id":"imdb://tt10308554"},{"id":"tmdb://98624"},{"id":"tvdb://376944"}]
 		}]}}`))
 	}))
@@ -42,5 +44,11 @@ func TestMetadataGUID(t *testing.T) {
 	want := []string{"imdb://tt10308554", "tmdb://98624", "tvdb://376944"}
 	if !slices.Equal(got, want) {
 		t.Errorf("GUID IDs = %q, want %q", got, want)
+	}
+	if got := resp.JSON200.MediaContainer.Metadata[0].PlexGUID; got != "plex://show/5d9c086c46115600200aa2fe" {
+		t.Errorf("PlexGUID = %q", got)
+	}
+	if got := resp.JSON200.MediaContainer.Metadata[0].ChildCount; got != 3 {
+		t.Errorf("ChildCount = %d, want 3", got)
 	}
 }

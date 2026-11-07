@@ -28,6 +28,61 @@ actions:
   - target: $.components.schemas.metadata.properties.Guid.items
     update:
       $ref: "#/components/schemas/guid"
+  # History items lack the parent and grandparent fields that Plex Media
+  # Server sends. grandparentKey links an episode play to its show. The item
+  # schema is inlined under the path and also defined as a component response
+  # (used by /status/sessions/history/{historyId}).
+  - target: $.paths["/status/sessions/history/all"].get.responses["200"].content["application/json"].schema.properties.MediaContainer.allOf[1].properties.Metadata.items.properties
+    update:
+      parentKey:
+        type: string
+        description: The `key` of the parent of the item played
+        example: /library/metadata/23420
+      grandparentKey:
+        type: string
+        description: The `key` of the grandparent of the item played, e.g. the show of an episode
+        example: /library/metadata/23419
+      grandparentTitle:
+        type: string
+        description: The `title` of the grandparent of the item played
+      index:
+        type: integer
+        description: The episode number for episodes, the season number for seasons, or the track number for audio tracks
+      parentIndex:
+        type: integer
+        description: The `index` of the parent of the item played
+  - target: $.components.responses["historyAll-get-responses-200"].content["application/json"].schema.properties.MediaContainer.allOf[1].properties.Metadata.items.properties
+    update:
+      parentKey:
+        type: string
+        description: The `key` of the parent of the item played
+        example: /library/metadata/23420
+      grandparentKey:
+        type: string
+        description: The `key` of the grandparent of the item played, e.g. the show of an episode
+        example: /library/metadata/23419
+      grandparentTitle:
+        type: string
+        description: The `title` of the grandparent of the item played
+      index:
+        type: integer
+        description: The episode number for episodes, the season number for seasons, or the track number for audio tracks
+      parentIndex:
+        type: integer
+        description: The `index` of the parent of the item played
+  # `metadata` lacks the item's own GUID and the child count of shows, seasons
+  # and collections. The lowercase `guid` would collide with `Guid` (the
+  # external agent identifiers), so it gets its own Go name.
+  - target: $.components.schemas.metadata.properties
+    update:
+      guid:
+        type: string
+        description: The Plex GUID of the item itself, e.g. "plex://movie/5d7769a023d5a3001f4fa465".
+        example: plex://movie/5d7769a023d5a3001f4fa465
+        x-go-name: PlexGUID
+      childCount:
+        type: integer
+        description: The number of direct children, e.g. seasons of a show or items in a collection.
   # `mediaContainer` (an object wrapping a `MediaContainer` property) and
   # `MediaContainer` (the container itself) both map to the Go name MediaContainer.
   - target: $.components.schemas.mediaContainer

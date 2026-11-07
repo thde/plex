@@ -4845,6 +4845,9 @@ type Items struct {
 	// ChapterSource When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
 	ChapterSource interface{} `json:"chapterSource,omitempty,omitzero"`
 
+	// ChildCount The number of direct children, e.g. seasons of a show or items in a collection.
+	ChildCount int `json:"childCount,omitempty,omitzero"`
+
 	// Composite When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
 	Composite interface{} `json:"composite,omitempty,omitzero"`
 
@@ -4874,6 +4877,9 @@ type Items struct {
 
 	// GrandparentTitle The `title` of the grandparent
 	GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
+	// PlexGUID The Plex GUID of the item itself, e.g. "plex://movie/5d7769a023d5a3001f4fa465".
+	PlexGUID string `json:"guid,omitempty,omitzero"`
 
 	// Hero When present, the URL for a hero image for the item.
 	Hero interface{} `json:"hero,omitempty,omitzero"`
@@ -5258,6 +5264,9 @@ type MediaContainerWithDecision_MediaContainer_Metadata_Item struct {
 	// ChapterSource When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
 	ChapterSource interface{} `json:"chapterSource,omitempty,omitzero"`
 
+	// ChildCount The number of direct children, e.g. seasons of a show or items in a collection.
+	ChildCount int `json:"childCount,omitempty,omitzero"`
+
 	// Composite When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
 	Composite interface{} `json:"composite,omitempty,omitzero"`
 
@@ -5287,6 +5296,9 @@ type MediaContainerWithDecision_MediaContainer_Metadata_Item struct {
 
 	// GrandparentTitle The `title` of the grandparent
 	GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
+	// PlexGUID The Plex GUID of the item itself, e.g. "plex://movie/5d7769a023d5a3001f4fa465".
+	PlexGUID string `json:"guid,omitempty,omitzero"`
 
 	// Hero When present, the URL for a hero image for the item.
 	Hero interface{} `json:"hero,omitempty,omitzero"`
@@ -5588,6 +5600,9 @@ type MediaContainerWithNestedMetadata_MediaContainer_MetadataItem_Item struct {
 	// ChapterSource When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
 	ChapterSource interface{} `json:"chapterSource,omitempty,omitzero"`
 
+	// ChildCount The number of direct children, e.g. seasons of a show or items in a collection.
+	ChildCount int `json:"childCount,omitempty,omitzero"`
+
 	// Composite When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
 	Composite interface{} `json:"composite,omitempty,omitzero"`
 
@@ -5617,6 +5632,9 @@ type MediaContainerWithNestedMetadata_MediaContainer_MetadataItem_Item struct {
 
 	// GrandparentTitle The `title` of the grandparent
 	GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
+	// PlexGUID The Plex GUID of the item itself, e.g. "plex://movie/5d7769a023d5a3001f4fa465".
+	PlexGUID string `json:"guid,omitempty,omitzero"`
 
 	// Hero When present, the URL for a hero image for the item.
 	Hero interface{} `json:"hero,omitempty,omitzero"`
@@ -5782,6 +5800,9 @@ type MediaContainerWithPlaylistMetadata_MediaContainer_Metadata_Item struct {
 	// ChapterSource When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
 	ChapterSource interface{} `json:"chapterSource,omitempty,omitzero"`
 
+	// ChildCount The number of direct children, e.g. seasons of a show or items in a collection.
+	ChildCount int `json:"childCount,omitempty,omitzero"`
+
 	// Composite When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
 	Composite interface{} `json:"composite,omitempty,omitzero"`
 
@@ -5811,6 +5832,9 @@ type MediaContainerWithPlaylistMetadata_MediaContainer_Metadata_Item struct {
 
 	// GrandparentTitle The `title` of the grandparent
 	GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
+	// PlexGUID The Plex GUID of the item itself, e.g. "plex://movie/5d7769a023d5a3001f4fa465".
+	PlexGUID string `json:"guid,omitempty,omitzero"`
 
 	// Hero When present, the URL for a hero image for the item.
 	Hero interface{} `json:"hero,omitempty,omitzero"`
@@ -6227,6 +6251,9 @@ type Metadata struct {
 	// ChapterSource When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
 	ChapterSource interface{} `json:"chapterSource,omitempty,omitzero"`
 
+	// ChildCount The number of direct children, e.g. seasons of a show or items in a collection.
+	ChildCount int `json:"childCount,omitempty,omitzero"`
+
 	// Composite When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
 	Composite interface{} `json:"composite,omitempty,omitzero"`
 
@@ -6256,6 +6283,9 @@ type Metadata struct {
 
 	// GrandparentTitle The `title` of the grandparent
 	GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
+	// PlexGUID The Plex GUID of the item itself, e.g. "plex://movie/5d7769a023d5a3001f4fa465".
+	PlexGUID string `json:"guid,omitempty,omitzero"`
 
 	// Hero When present, the URL for a hero image for the item.
 	Hero interface{} `json:"hero,omitempty,omitzero"`
@@ -6920,8 +6950,17 @@ type HistoryAllGetResponses200_MediaContainer struct {
 		// DeviceID The device id which played the item
 		DeviceID int `json:"deviceID,omitempty,omitzero"`
 
+		// GrandparentKey The `key` of the grandparent of the item played, e.g. the show of an episode
+		GrandparentKey string `json:"grandparentKey,omitempty,omitzero"`
+
+		// GrandparentTitle The `title` of the grandparent of the item played
+		GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
 		// HistoryKey The key for this individual history item
 		HistoryKey string `json:"historyKey,omitempty,omitzero"`
+
+		// Index The episode number for episodes, the season number for seasons, or the track number for audio tracks
+		Index int `json:"index,omitempty,omitzero"`
 
 		// Key The metadata key for the item played
 		Key string `json:"key,omitempty,omitzero"`
@@ -6931,6 +6970,12 @@ type HistoryAllGetResponses200_MediaContainer struct {
 
 		// OriginallyAvailableAt The originally available at of the item played
 		OriginallyAvailableAt string `json:"originallyAvailableAt,omitempty,omitzero"`
+
+		// ParentIndex The `index` of the parent of the item played
+		ParentIndex int `json:"parentIndex,omitempty,omitzero"`
+
+		// ParentKey The `key` of the parent of the item played
+		ParentKey string `json:"parentKey,omitempty,omitzero"`
 
 		// RatingKey The rating key for the item played
 		RatingKey string `json:"ratingKey,omitempty,omitzero"`
@@ -9093,6 +9138,9 @@ type PlaylistGetItemsGeneratorItems200JSONResponseBody_MediaContainer_Metadata s
 	// ChapterSource When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
 	ChapterSource interface{} `json:"chapterSource,omitempty,omitzero"`
 
+	// ChildCount The number of direct children, e.g. seasons of a show or items in a collection.
+	ChildCount int `json:"childCount,omitempty,omitzero"`
+
 	// Composite When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
 	Composite interface{} `json:"composite,omitempty,omitzero"`
 
@@ -9122,6 +9170,9 @@ type PlaylistGetItemsGeneratorItems200JSONResponseBody_MediaContainer_Metadata s
 
 	// GrandparentTitle The `title` of the grandparent
 	GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
+	// PlexGUID The Plex GUID of the item itself, e.g. "plex://movie/5d7769a023d5a3001f4fa465".
+	PlexGUID string `json:"guid,omitempty,omitzero"`
 
 	// Hero When present, the URL for a hero image for the item.
 	Hero interface{} `json:"hero,omitempty,omitzero"`
@@ -9429,6 +9480,9 @@ type StatusGetSlash200JSONResponseBody_MediaContainer_Metadata_Item struct {
 	// ChapterSource When present, indicates the source for the chapters in the media file. Can be media (the chapters were embedded in the media itself), agent (a metadata agent computed them), or mixed (a combination of the two).
 	ChapterSource interface{} `json:"chapterSource,omitempty,omitzero"`
 
+	// ChildCount The number of direct children, e.g. seasons of a show or items in a collection.
+	ChildCount int `json:"childCount,omitempty,omitzero"`
+
 	// Composite When present, the URL for a composite image for descendent items (e.g. photo albums or playlists).
 	Composite interface{} `json:"composite,omitempty,omitzero"`
 
@@ -9458,6 +9512,9 @@ type StatusGetSlash200JSONResponseBody_MediaContainer_Metadata_Item struct {
 
 	// GrandparentTitle The `title` of the grandparent
 	GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
+	// PlexGUID The Plex GUID of the item itself, e.g. "plex://movie/5d7769a023d5a3001f4fa465".
+	PlexGUID string `json:"guid,omitempty,omitzero"`
 
 	// Hero When present, the URL for a hero image for the item.
 	Hero interface{} `json:"hero,omitempty,omitzero"`
@@ -9619,8 +9676,17 @@ type StatusGetHistoryAll200JSONResponseBody_MediaContainer struct {
 		// DeviceID The device id which played the item
 		DeviceID int `json:"deviceID,omitempty,omitzero"`
 
+		// GrandparentKey The `key` of the grandparent of the item played, e.g. the show of an episode
+		GrandparentKey string `json:"grandparentKey,omitempty,omitzero"`
+
+		// GrandparentTitle The `title` of the grandparent of the item played
+		GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
 		// HistoryKey The key for this individual history item
 		HistoryKey string `json:"historyKey,omitempty,omitzero"`
+
+		// Index The episode number for episodes, the season number for seasons, or the track number for audio tracks
+		Index int `json:"index,omitempty,omitzero"`
 
 		// Key The metadata key for the item played
 		Key string `json:"key,omitempty,omitzero"`
@@ -9630,6 +9696,12 @@ type StatusGetHistoryAll200JSONResponseBody_MediaContainer struct {
 
 		// OriginallyAvailableAt The originally available at of the item played
 		OriginallyAvailableAt string `json:"originallyAvailableAt,omitempty,omitzero"`
+
+		// ParentIndex The `index` of the parent of the item played
+		ParentIndex int `json:"parentIndex,omitempty,omitzero"`
+
+		// ParentKey The `key` of the parent of the item played
+		ParentKey string `json:"parentKey,omitempty,omitzero"`
 
 		// RatingKey The rating key for the item played
 		RatingKey string `json:"ratingKey,omitempty,omitzero"`
@@ -9666,8 +9738,17 @@ type StatusGetHistory200JSONResponseBody_MediaContainer struct {
 		// DeviceID The device id which played the item
 		DeviceID int `json:"deviceID,omitempty,omitzero"`
 
+		// GrandparentKey The `key` of the grandparent of the item played, e.g. the show of an episode
+		GrandparentKey string `json:"grandparentKey,omitempty,omitzero"`
+
+		// GrandparentTitle The `title` of the grandparent of the item played
+		GrandparentTitle string `json:"grandparentTitle,omitempty,omitzero"`
+
 		// HistoryKey The key for this individual history item
 		HistoryKey string `json:"historyKey,omitempty,omitzero"`
+
+		// Index The episode number for episodes, the season number for seasons, or the track number for audio tracks
+		Index int `json:"index,omitempty,omitzero"`
 
 		// Key The metadata key for the item played
 		Key string `json:"key,omitempty,omitzero"`
@@ -9677,6 +9758,12 @@ type StatusGetHistory200JSONResponseBody_MediaContainer struct {
 
 		// OriginallyAvailableAt The originally available at of the item played
 		OriginallyAvailableAt string `json:"originallyAvailableAt,omitempty,omitzero"`
+
+		// ParentIndex The `index` of the parent of the item played
+		ParentIndex int `json:"parentIndex,omitempty,omitzero"`
+
+		// ParentKey The `key` of the parent of the item played
+		ParentKey string `json:"parentKey,omitempty,omitzero"`
 
 		// RatingKey The rating key for the item played
 		RatingKey string `json:"ratingKey,omitempty,omitzero"`
@@ -11182,6 +11269,14 @@ func (a *Items) UnmarshalJSON(b []byte) error {
 		delete(object, "chapterSource")
 	}
 
+	if raw, found := object["childCount"]; found {
+		err = json.Unmarshal(raw, &a.ChildCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'childCount': %w", err)
+		}
+		delete(object, "childCount")
+	}
+
 	if raw, found := object["composite"]; found {
 		err = json.Unmarshal(raw, &a.Composite)
 		if err != nil {
@@ -11260,6 +11355,14 @@ func (a *Items) UnmarshalJSON(b []byte) error {
 			return fmt.Errorf("error reading 'grandparentTitle': %w", err)
 		}
 		delete(object, "grandparentTitle")
+	}
+
+	if raw, found := object["guid"]; found {
+		err = json.Unmarshal(raw, &a.PlexGUID)
+		if err != nil {
+			return fmt.Errorf("error reading 'guid': %w", err)
+		}
+		delete(object, "guid")
 	}
 
 	if raw, found := object["hero"]; found {
@@ -11711,6 +11814,11 @@ func (a Items) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'chapterSource': %w", err)
 	}
 
+	object["childCount"], err = json.Marshal(a.ChildCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'childCount': %w", err)
+	}
+
 	object["composite"], err = json.Marshal(a.Composite)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'composite': %w", err)
@@ -11759,6 +11867,11 @@ func (a Items) MarshalJSON() ([]byte, error) {
 	object["grandparentTitle"], err = json.Marshal(a.GrandparentTitle)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'grandparentTitle': %w", err)
+	}
+
+	object["guid"], err = json.Marshal(a.PlexGUID)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'guid': %w", err)
 	}
 
 	object["hero"], err = json.Marshal(a.Hero)
@@ -13539,6 +13652,14 @@ func (a *MediaContainerWithDecision_MediaContainer_Metadata_Item) UnmarshalJSON(
 		delete(object, "chapterSource")
 	}
 
+	if raw, found := object["childCount"]; found {
+		err = json.Unmarshal(raw, &a.ChildCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'childCount': %w", err)
+		}
+		delete(object, "childCount")
+	}
+
 	if raw, found := object["composite"]; found {
 		err = json.Unmarshal(raw, &a.Composite)
 		if err != nil {
@@ -13617,6 +13738,14 @@ func (a *MediaContainerWithDecision_MediaContainer_Metadata_Item) UnmarshalJSON(
 			return fmt.Errorf("error reading 'grandparentTitle': %w", err)
 		}
 		delete(object, "grandparentTitle")
+	}
+
+	if raw, found := object["guid"]; found {
+		err = json.Unmarshal(raw, &a.PlexGUID)
+		if err != nil {
+			return fmt.Errorf("error reading 'guid': %w", err)
+		}
+		delete(object, "guid")
 	}
 
 	if raw, found := object["hero"]; found {
@@ -14061,6 +14190,11 @@ func (a MediaContainerWithDecision_MediaContainer_Metadata_Item) MarshalJSON() (
 		return nil, fmt.Errorf("error marshaling 'chapterSource': %w", err)
 	}
 
+	object["childCount"], err = json.Marshal(a.ChildCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'childCount': %w", err)
+	}
+
 	object["composite"], err = json.Marshal(a.Composite)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'composite': %w", err)
@@ -14109,6 +14243,11 @@ func (a MediaContainerWithDecision_MediaContainer_Metadata_Item) MarshalJSON() (
 	object["grandparentTitle"], err = json.Marshal(a.GrandparentTitle)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'grandparentTitle': %w", err)
+	}
+
+	object["guid"], err = json.Marshal(a.PlexGUID)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'guid': %w", err)
 	}
 
 	object["hero"], err = json.Marshal(a.Hero)
@@ -14852,6 +14991,14 @@ func (a *MediaContainerWithNestedMetadata_MediaContainer_MetadataItem_Item) Unma
 		delete(object, "chapterSource")
 	}
 
+	if raw, found := object["childCount"]; found {
+		err = json.Unmarshal(raw, &a.ChildCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'childCount': %w", err)
+		}
+		delete(object, "childCount")
+	}
+
 	if raw, found := object["composite"]; found {
 		err = json.Unmarshal(raw, &a.Composite)
 		if err != nil {
@@ -14930,6 +15077,14 @@ func (a *MediaContainerWithNestedMetadata_MediaContainer_MetadataItem_Item) Unma
 			return fmt.Errorf("error reading 'grandparentTitle': %w", err)
 		}
 		delete(object, "grandparentTitle")
+	}
+
+	if raw, found := object["guid"]; found {
+		err = json.Unmarshal(raw, &a.PlexGUID)
+		if err != nil {
+			return fmt.Errorf("error reading 'guid': %w", err)
+		}
+		delete(object, "guid")
 	}
 
 	if raw, found := object["hero"]; found {
@@ -15381,6 +15536,11 @@ func (a MediaContainerWithNestedMetadata_MediaContainer_MetadataItem_Item) Marsh
 		return nil, fmt.Errorf("error marshaling 'chapterSource': %w", err)
 	}
 
+	object["childCount"], err = json.Marshal(a.ChildCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'childCount': %w", err)
+	}
+
 	object["composite"], err = json.Marshal(a.Composite)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'composite': %w", err)
@@ -15429,6 +15589,11 @@ func (a MediaContainerWithNestedMetadata_MediaContainer_MetadataItem_Item) Marsh
 	object["grandparentTitle"], err = json.Marshal(a.GrandparentTitle)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'grandparentTitle': %w", err)
+	}
+
+	object["guid"], err = json.Marshal(a.PlexGUID)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'guid': %w", err)
 	}
 
 	object["hero"], err = json.Marshal(a.Hero)
@@ -15807,6 +15972,14 @@ func (a *MediaContainerWithPlaylistMetadata_MediaContainer_Metadata_Item) Unmars
 		delete(object, "chapterSource")
 	}
 
+	if raw, found := object["childCount"]; found {
+		err = json.Unmarshal(raw, &a.ChildCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'childCount': %w", err)
+		}
+		delete(object, "childCount")
+	}
+
 	if raw, found := object["composite"]; found {
 		err = json.Unmarshal(raw, &a.Composite)
 		if err != nil {
@@ -15885,6 +16058,14 @@ func (a *MediaContainerWithPlaylistMetadata_MediaContainer_Metadata_Item) Unmars
 			return fmt.Errorf("error reading 'grandparentTitle': %w", err)
 		}
 		delete(object, "grandparentTitle")
+	}
+
+	if raw, found := object["guid"]; found {
+		err = json.Unmarshal(raw, &a.PlexGUID)
+		if err != nil {
+			return fmt.Errorf("error reading 'guid': %w", err)
+		}
+		delete(object, "guid")
 	}
 
 	if raw, found := object["hero"]; found {
@@ -16361,6 +16542,11 @@ func (a MediaContainerWithPlaylistMetadata_MediaContainer_Metadata_Item) Marshal
 		return nil, fmt.Errorf("error marshaling 'chapterSource': %w", err)
 	}
 
+	object["childCount"], err = json.Marshal(a.ChildCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'childCount': %w", err)
+	}
+
 	object["composite"], err = json.Marshal(a.Composite)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'composite': %w", err)
@@ -16409,6 +16595,11 @@ func (a MediaContainerWithPlaylistMetadata_MediaContainer_Metadata_Item) Marshal
 	object["grandparentTitle"], err = json.Marshal(a.GrandparentTitle)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'grandparentTitle': %w", err)
+	}
+
+	object["guid"], err = json.Marshal(a.PlexGUID)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'guid': %w", err)
 	}
 
 	object["hero"], err = json.Marshal(a.Hero)
@@ -16927,6 +17118,14 @@ func (a *Metadata) UnmarshalJSON(b []byte) error {
 		delete(object, "chapterSource")
 	}
 
+	if raw, found := object["childCount"]; found {
+		err = json.Unmarshal(raw, &a.ChildCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'childCount': %w", err)
+		}
+		delete(object, "childCount")
+	}
+
 	if raw, found := object["composite"]; found {
 		err = json.Unmarshal(raw, &a.Composite)
 		if err != nil {
@@ -17005,6 +17204,14 @@ func (a *Metadata) UnmarshalJSON(b []byte) error {
 			return fmt.Errorf("error reading 'grandparentTitle': %w", err)
 		}
 		delete(object, "grandparentTitle")
+	}
+
+	if raw, found := object["guid"]; found {
+		err = json.Unmarshal(raw, &a.PlexGUID)
+		if err != nil {
+			return fmt.Errorf("error reading 'guid': %w", err)
+		}
+		delete(object, "guid")
 	}
 
 	if raw, found := object["hero"]; found {
@@ -17449,6 +17656,11 @@ func (a Metadata) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("error marshaling 'chapterSource': %w", err)
 	}
 
+	object["childCount"], err = json.Marshal(a.ChildCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'childCount': %w", err)
+	}
+
 	object["composite"], err = json.Marshal(a.Composite)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'composite': %w", err)
@@ -17497,6 +17709,11 @@ func (a Metadata) MarshalJSON() ([]byte, error) {
 	object["grandparentTitle"], err = json.Marshal(a.GrandparentTitle)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'grandparentTitle': %w", err)
+	}
+
+	object["guid"], err = json.Marshal(a.PlexGUID)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'guid': %w", err)
 	}
 
 	object["hero"], err = json.Marshal(a.Hero)
@@ -19844,6 +20061,14 @@ func (a *PlaylistGetItemsGeneratorItems200JSONResponseBody_MediaContainer_Metada
 		delete(object, "chapterSource")
 	}
 
+	if raw, found := object["childCount"]; found {
+		err = json.Unmarshal(raw, &a.ChildCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'childCount': %w", err)
+		}
+		delete(object, "childCount")
+	}
+
 	if raw, found := object["composite"]; found {
 		err = json.Unmarshal(raw, &a.Composite)
 		if err != nil {
@@ -19922,6 +20147,14 @@ func (a *PlaylistGetItemsGeneratorItems200JSONResponseBody_MediaContainer_Metada
 			return fmt.Errorf("error reading 'grandparentTitle': %w", err)
 		}
 		delete(object, "grandparentTitle")
+	}
+
+	if raw, found := object["guid"]; found {
+		err = json.Unmarshal(raw, &a.PlexGUID)
+		if err != nil {
+			return fmt.Errorf("error reading 'guid': %w", err)
+		}
+		delete(object, "guid")
 	}
 
 	if raw, found := object["hero"]; found {
@@ -20382,6 +20615,11 @@ func (a PlaylistGetItemsGeneratorItems200JSONResponseBody_MediaContainer_Metadat
 		return nil, fmt.Errorf("error marshaling 'chapterSource': %w", err)
 	}
 
+	object["childCount"], err = json.Marshal(a.ChildCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'childCount': %w", err)
+	}
+
 	object["composite"], err = json.Marshal(a.Composite)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'composite': %w", err)
@@ -20430,6 +20668,11 @@ func (a PlaylistGetItemsGeneratorItems200JSONResponseBody_MediaContainer_Metadat
 	object["grandparentTitle"], err = json.Marshal(a.GrandparentTitle)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'grandparentTitle': %w", err)
+	}
+
+	object["guid"], err = json.Marshal(a.PlexGUID)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'guid': %w", err)
 	}
 
 	object["hero"], err = json.Marshal(a.Hero)
@@ -20842,6 +21085,14 @@ func (a *StatusGetSlash200JSONResponseBody_MediaContainer_Metadata_Item) Unmarsh
 		delete(object, "chapterSource")
 	}
 
+	if raw, found := object["childCount"]; found {
+		err = json.Unmarshal(raw, &a.ChildCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'childCount': %w", err)
+		}
+		delete(object, "childCount")
+	}
+
 	if raw, found := object["composite"]; found {
 		err = json.Unmarshal(raw, &a.Composite)
 		if err != nil {
@@ -20920,6 +21171,14 @@ func (a *StatusGetSlash200JSONResponseBody_MediaContainer_Metadata_Item) Unmarsh
 			return fmt.Errorf("error reading 'grandparentTitle': %w", err)
 		}
 		delete(object, "grandparentTitle")
+	}
+
+	if raw, found := object["guid"]; found {
+		err = json.Unmarshal(raw, &a.PlexGUID)
+		if err != nil {
+			return fmt.Errorf("error reading 'guid': %w", err)
+		}
+		delete(object, "guid")
 	}
 
 	if raw, found := object["hero"]; found {
@@ -21379,6 +21638,11 @@ func (a StatusGetSlash200JSONResponseBody_MediaContainer_Metadata_Item) MarshalJ
 		return nil, fmt.Errorf("error marshaling 'chapterSource': %w", err)
 	}
 
+	object["childCount"], err = json.Marshal(a.ChildCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'childCount': %w", err)
+	}
+
 	object["composite"], err = json.Marshal(a.Composite)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'composite': %w", err)
@@ -21427,6 +21691,11 @@ func (a StatusGetSlash200JSONResponseBody_MediaContainer_Metadata_Item) MarshalJ
 	object["grandparentTitle"], err = json.Marshal(a.GrandparentTitle)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'grandparentTitle': %w", err)
+	}
+
+	object["guid"], err = json.Marshal(a.PlexGUID)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'guid': %w", err)
 	}
 
 	object["hero"], err = json.Marshal(a.Hero)
