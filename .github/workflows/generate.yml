@@ -1,0 +1,58 @@
+name: generate
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  # Required to dispatch the test workflow: pushes made with GITHUB_TOKEN do
+  # not trigger other workflows.
+  actions: write
+
+concurrency:
+  group: generate
+  cancel-in-progress: false
+
+env:
+  BRANCH: generate
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+      - run: make generate
+      - name: Create or update pull request
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then
+            echo "Generated code is up to date."
+            exit 0
+          fi
+
+          # Skip the push if the branch already holds exactly this tree, so
+          # an unmerged pull request is not rewritten every week.
+          if git fetch --depth=1 origin "$BRANCH" 2>/dev/null && git diff --quiet FETCH_HEAD; then
+            echo "Branch $BRANCH is already up to date."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git switch --force-create "$BRANCH"
+            git commit --all --message "feat: regenerate client from upstream spec"
+            git push --force origin "$BRANCH"
+            gh workflow run test.yml --ref "$BRANCH"
+          fi
+
+          if [ "$(gh pr view "$BRANCH" --json state --jq .state 2>/dev/null)" != "OPEN" ]; then
+            gh pr create --fill --head "$BRANCH"
+          fi
